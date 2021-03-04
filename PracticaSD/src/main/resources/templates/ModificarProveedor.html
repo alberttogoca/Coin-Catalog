@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Modificar proveedor</title>
+
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light"style="background-color: #e3f2fd;">
+		<a><img src=https://mapaoficinascert.appspot.com/img/icon_fnmt.svg width="50" height="50"></a>
+		
+		
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="/"><h4>Inicio</h4>
+						
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="/Monedas"><h4>Monedas</h4></a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/Ejemplares"><h4>Ejemplares</h4></a></li>
+				<li class="nav-item"><a class="nav-link" href="/Proveedores"><h4>Proveedores</h4></a></li>
+			</ul>
+			
+		</div>
+	</nav>
+	<div>
+	<div class="container">
+	<h1>Editar proveedor</h1>
+		<form th:action="@{/editarProveedor}" th:object="${proveedor}" method="post">
+		<br>		
+		<label>CIF</label> 
+			<div>
+				 <input type="text" size="30" maxlength="20" th:field="*{cif}" required/>
+			</div>	
+		<label>Nombre</label> 
+			<div>
+				 <input type="text" size="30" maxlength="30" th:field="*{nombre}" required/>
+			</div>
+		<label>Codigo Postal</label> 
+			<div>
+				 <input type="number" size="30" min="10000" max="99999" th:field="*{codigopostal}" required/>
+			</div>
+		<label>Email</label> 
+			<div>
+				 <input type="text" size="50" th:field="*{email}" required/>
+			</div>
+		<label>Telefono</label> 
+			<div>
+				 <input type="number" min="100000000" max="999999999" th:field="*{telefono}" required/>
+			</div>
+			<br>
+			<input type='submit' class="btn btn-primary"value='Enviar' />
+			<input type="button" class="btn btn-primary"value="Atras" onclick="window.location.href='/Proveedores'" />	
+		</form>
+	</div>
+	</div>
+</body>
+</html>

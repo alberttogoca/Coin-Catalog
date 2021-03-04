@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Proveedores filtrados</title>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-light"style="background-color: #e3f2fd;">
+		<a><img src=https://mapaoficinascert.appspot.com/img/icon_fnmt.svg width="50" height="50"></a>
+		
+		
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="/"><h4>Inicio</h4>
+						
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="/Monedas"><h4>Monedas</h4></a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/Ejemplares"><h4>Ejemplares</h4></a></li>
+				<li class="nav-item"><a class="nav-link" href="/Proveedores"><h4>Proveedores</h4></a></li>
+			</ul>
+			
+		</div>
+		<form action="/FiltrarProveedores">
+		<form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Insertar nombre" name="nombre" required>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filtrar proveedor</button>
+    
+      						
+  </form>
+  </form>
+</nav>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th></th>
+      <th>CIF</th>
+      <th>Nombre</th>
+      <th>Código Postal</th>
+      <th>E-mail</th>
+      <th>Teléfono</th>
+      <th></th>
+      <th><a class="btn btn-primary" role="button"href="/aniadirProveedor">Añadir</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="proveedor : ${proveedores}">
+      <th scope="row"></th>
+      <td th:utext= "${proveedor.cif}"></td>
+      <td th:utext= "${proveedor.nombre}"></td>
+      <td th:utext= "${proveedor.codigopostal}"></td>
+      <td th:utext= "${proveedor.email}"></td>
+      <td th:utext= "${proveedor.telefono}"></td>
+      <td></td>
+      <td><a th:href="@{/editarProveedor(cif=${proveedor.cif})}">Editar</td>
+    </tr>
+  </tbody>
+</table>
+<hr></hr>
+
+</body>
+
+</html>

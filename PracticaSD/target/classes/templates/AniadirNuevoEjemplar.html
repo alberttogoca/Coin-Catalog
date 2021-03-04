@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Añadir Ejemplar</title>
+
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light"style="background-color: #e3f2fd;">
+		<a><img src=https://mapaoficinascert.appspot.com/img/icon_fnmt.svg width="50" height="50"></a>
+		
+		
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="/"><h4>Inicio</h4>
+						
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="/Monedas"><h4>Monedas</h4></a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/Ejemplares"><h4>Ejemplares</h4></a></li>
+				<li class="nav-item"><a class="nav-link" href="/Proveedores"><h4>Proveedores</h4></a></li>
+			</ul>
+			
+		</div>
+	</nav>
+	<br>
+	<div class="container">
+		<h1>Añadir Ejemplar</h1>
+		<form th:action="@{/aniadirEjemplar}" th:object="${ejemplar}" method="post">
+			<br>
+			<label>Año</label> 
+			<div>
+				 <input type="number" min="1" max="2019" th:field="*{year}" placeholder="Introduzca el año de fabricación del ejemplar"required/>
+			</div>
+			<label>Ciudad</label> 
+			<div>
+				 <input type="text" size="50" maxlength="40" th:field="*{ciudad}" placeholder="Introduzca la cuidad de acuñación del ejemplar"required/>
+			</div>
+			<label>Fecha</label> 
+			<div>
+				 <input type="date" th:field="*{fecha}" placeholder="Introduzca la fecha de adquisición del ejemplar"required/>
+			</div>
+			<label>Estado</label> 
+			<div>
+				 <input type="text" size="50"  maxlength="20" th:field="*{estado}" placeholder="Introduzca el estado de conservación del ejemplar"required/>
+			</div>
+			<br>
+			<p><b>Moneda</b>
+				<select th:field="*{moneda}" > 
+					<option th:if="monedas.idMoneda != null" 
+					th:each="moneda : ${monedas}"
+					th:value="${moneda.idMoneda}" 
+					th:text="${moneda.unidad} + ${' '} + ${moneda.valor}"></option>
+				</select>				
+			</p>
+			<p><b>Proveedor</b>
+				<select th:field="*{proveedor}" > 
+					<option th:if="proveedores.idProveedor != null" 
+					th:each="proveedor : ${proveedores}"
+					th:value="${proveedor.idProveedor}" 
+					th:text="${proveedor.nombre}"></option>
+				</select> 
+				
+			</p>
+			<br>
+			<input type='submit' class="btn btn-primary"value='Enviar' />
+			<input type="button" class="btn btn-primary"value="Atras" onclick="window.location.href='/Ejemplares'" />	
+		</form>
+	</div>
+</body>
+</html>
